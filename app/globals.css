@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+Kannada:wght@300;400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+/* ========================================
+   HOBBIES OF SHUBHA — GLOBAL THEME SYSTEM
+   Traditional Indian Arts Luxury Palette
+   ======================================== */
+
+
+/* Custom Theme Tokens */
+@theme {
+  --color-gold-glow: #d4a017;
+  --color-temple-gold: #b8860b;
+  --color-royal-crimson: #1a0a1e;
+  --color-deep-silk: #0d0511;
+  --color-cream-ivory: #fef3c7;
+  --font-family-sans: 'Inter', 'Noto Sans Kannada', system-ui, sans-serif;
+  --font-family-kannada: 'Noto Sans Kannada', 'Inter', sans-serif;
+}
+
+/* Base Resets & Globals */
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: var(--font-family-sans);
+    background: linear-gradient(135deg, #0d0511 0%, #1a0a1e 25%, #1e0a2e 50%, #0d0511 100%);
+    color: #fef3c7;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0d0511;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #d97706, #b8860b);
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #f59e0b;
+  }
+}
+
+/* Custom Utility Classes */
+@layer utilities {
+  /* Gold shimmer text effect */
+  .text-gold-shimmer {
+    background: linear-gradient(135deg, #f59e0b, #d4a017, #fbbf24, #d97706);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Ornate gold border glow */
+  .border-gold-glow {
+    border-color: rgba(245, 158, 11, 0.6);
+    box-shadow:
+      0 0 15px rgba(245, 158, 11, 0.15),
+      inset 0 0 15px rgba(245, 158, 11, 0.05);
+  }
+
+  /* Deep silk card surface */
+  .bg-silk-surface {
+    background: linear-gradient(
+      145deg,
+      rgba(88, 28, 135, 0.25) 0%,
+      rgba(15, 5, 20, 0.85) 50%,
+      rgba(88, 28, 135, 0.15) 100%
+    );
+  }
+
+  /* Pulsing gold CTA animation */
+  .animate-gold-pulse {
+    animation: goldPulse 2.5s ease-in-out infinite;
+  }
+
+  /* Temple border decorative pattern */
+  .border-temple {
+    border-image: linear-gradient(135deg, #d97706, #fbbf24, #d97706) 1;
+  }
+
+  /* Glassmorphic surface */
+  .glass-surface {
+    background: rgba(88, 28, 135, 0.2);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(245, 158, 11, 0.15);
+  }
+}
+
+/* Keyframe Animations */
+@keyframes goldPulse {
+  0%, 100% {
+    box-shadow:
+      0 0 20px rgba(217, 119, 6, 0.4),
+      0 0 40px rgba(217, 119, 6, 0.1);
+  }
+  50% {
+    box-shadow:
+      0 0 30px rgba(217, 119, 6, 0.6),
+      0 0 60px rgba(217, 119, 6, 0.2),
+      0 0 80px rgba(217, 119, 6, 0.1);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+/* Fade in animation utility */
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animate-fade-in-up-delay {
+  animation: fadeInUp 0.8s ease-out 0.2s forwards;
+  opacity: 0;
+}
+
+.animate-fade-in-up-delay-2 {
+  animation: fadeInUp 0.8s ease-out 0.4s forwards;
+  opacity: 0;
+}
