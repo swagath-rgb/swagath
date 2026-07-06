@@ -1,28 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+Kannada:wght@300;400;500;600;700;800&display=swap');
 @import "tailwindcss";
 
-/* ========================================
-   HOBBIES OF SHUBHA — GLOBAL THEME SYSTEM
-   Traditional Indian Arts Luxury Palette
-   ======================================== */
+/* ============================================================
+   KANNADATI HERITAGE ACADEMY — IMPERIAL INDIAN DESIGN SYSTEM
+   ============================================================ */
 
-
-/* Custom Theme Tokens */
 @theme {
-  --color-gold-glow: #d4a017;
-  --color-temple-gold: #b8860b;
-  --color-royal-crimson: #1a0a1e;
-  --color-deep-silk: #0d0511;
-  --color-cream-ivory: #fef3c7;
+  --color-canvas: #2D0B1E;
+  --color-surface: #1C0713;
+  --color-gold: #D4AF37;
+  --color-gold-light: #E6CA65;
+  --color-gold-dark: #AA7C11;
+  --color-ivory: #F9F6EE;
+  --color-sandstone: #C8B195;
   --font-family-sans: 'Inter', 'Noto Sans Kannada', system-ui, sans-serif;
   --font-family-kannada: 'Noto Sans Kannada', 'Inter', sans-serif;
 }
 
-/* Base Resets & Globals */
+/* ==================== BASE RESETS ==================== */
 @layer base {
-  *,
-  *::before,
-  *::after {
+  *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -36,94 +33,125 @@
 
   body {
     font-family: var(--font-family-sans);
-    background: linear-gradient(135deg, #0d0511 0%, #1a0a1e 25%, #1e0a2e 50%, #0d0511 100%);
-    color: #fef3c7;
+    background-color: #2D0B1E;
+    color: #F9F6EE;
     min-height: 100vh;
     overflow-x: hidden;
   }
 
-  /* Custom Scrollbar */
-  ::-webkit-scrollbar {
-    width: 8px;
-  }
-  ::-webkit-scrollbar-track {
-    background: #0d0511;
-  }
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: #1C0713; }
   ::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, #d97706, #b8860b);
-    border-radius: 4px;
+    background: linear-gradient(180deg, #D4AF37, #AA7C11);
+    border-radius: 3px;
   }
-  ::-webkit-scrollbar-thumb:hover {
-    background: #f59e0b;
-  }
+  ::-webkit-scrollbar-thumb:hover { background: #E6CA65; }
 }
 
-/* Custom Utility Classes */
+/* ==================== UTILITIES ==================== */
 @layer utilities {
-  /* Gold shimmer text effect */
+  /* Kannadati metallic gold gradient glyph */
+  .kannadati-glyph {
+    background: linear-gradient(to right, #D4AF37, #F3E5AB, #AA7C11);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    transition: filter 0.4s ease;
+  }
+  .kannadati-glyph:hover {
+    filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.3));
+  }
+
+  /* Gold shimmer text */
   .text-gold-shimmer {
-    background: linear-gradient(135deg, #f59e0b, #d4a017, #fbbf24, #d97706);
+    background: linear-gradient(135deg, #D4AF37 0%, #E6CA65 40%, #D4AF37 70%, #F3E5AB 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
-  /* Ornate gold border glow */
-  .border-gold-glow {
-    border-color: rgba(245, 158, 11, 0.6);
-    box-shadow:
-      0 0 15px rgba(245, 158, 11, 0.15),
-      inset 0 0 15px rgba(245, 158, 11, 0.05);
+  /* Glassmorphic nav surface */
+  .glass-surface {
+    background: rgba(28, 7, 19, 0.88);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.1);
   }
 
-  /* Deep silk card surface */
+  /* Rich surface for cards */
   .bg-silk-surface {
     background: linear-gradient(
       145deg,
-      rgba(88, 28, 135, 0.25) 0%,
-      rgba(15, 5, 20, 0.85) 50%,
-      rgba(88, 28, 135, 0.15) 100%
+      rgba(45, 11, 30, 0.75) 0%,
+      rgba(28, 7, 19, 0.95) 50%,
+      rgba(45, 11, 30, 0.65) 100%
     );
   }
 
-  /* Pulsing gold CTA animation */
+  /* Viewport reveal animation target */
+  .section-reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .section-reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Gold pulsing CTA glow */
   .animate-gold-pulse {
     animation: goldPulse 2.5s ease-in-out infinite;
   }
 
-  /* Temple border decorative pattern */
-  .border-temple {
-    border-image: linear-gradient(135deg, #d97706, #fbbf24, #d97706) 1;
+  /* Fade up helpers */
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  .animate-fade-in-up-delay {
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+    opacity: 0;
+  }
+  .animate-fade-in-up-delay-2 {
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+    opacity: 0;
   }
 
-  /* Glassmorphic surface */
-  .glass-surface {
-    background: rgba(88, 28, 135, 0.2);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(245, 158, 11, 0.15);
+  /* Live status pulse */
+  .animate-live-pulse {
+    animation: livePulse 1.5s ease-in-out infinite;
   }
 }
 
-/* Keyframe Animations */
+/* ==================== KEYFRAMES ==================== */
+
+/* Rotating golden border light beam */
+@keyframes rotateBorder {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* Pulsing gold CTA shadow */
 @keyframes goldPulse {
   0%, 100% {
     box-shadow:
-      0 0 20px rgba(217, 119, 6, 0.4),
-      0 0 40px rgba(217, 119, 6, 0.1);
+      0 0 20px rgba(212, 175, 55, 0.3),
+      0 0 40px rgba(212, 175, 55, 0.1);
   }
   50% {
     box-shadow:
-      0 0 30px rgba(217, 119, 6, 0.6),
-      0 0 60px rgba(217, 119, 6, 0.2),
-      0 0 80px rgba(217, 119, 6, 0.1);
+      0 0 35px rgba(212, 175, 55, 0.5),
+      0 0 65px rgba(212, 175, 55, 0.2);
   }
 }
 
+/* Section fade up */
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(28px);
   }
   to {
     opacity: 1;
@@ -131,26 +159,8 @@
   }
 }
 
-@keyframes shimmer {
-  0% {
-    background-position: -200% center;
-  }
-  100% {
-    background-position: 200% center;
-  }
-}
-
-/* Fade in animation utility */
-.animate-fade-in-up {
-  animation: fadeInUp 0.8s ease-out forwards;
-}
-
-.animate-fade-in-up-delay {
-  animation: fadeInUp 0.8s ease-out 0.2s forwards;
-  opacity: 0;
-}
-
-.animate-fade-in-up-delay-2 {
-  animation: fadeInUp 0.8s ease-out 0.4s forwards;
-  opacity: 0;
+/* Live badge pulse */
+@keyframes livePulse {
+  0%, 100% { opacity: 1;   transform: scale(1); }
+  50%       { opacity: 0.4; transform: scale(0.82); }
 }

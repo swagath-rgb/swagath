@@ -1,156 +1,412 @@
+'use client';
+
+import { useState } from 'react';
+
+interface FormData {
+  name: string;
+  email: string;
+  mobile: string;
+}
+
+type FormStatus = 'idle' | 'loading' | 'success' | 'error';
+
 export default function CourseSection() {
-  const modules = [
-    {
-      number: '01',
-      title: 'Fabric Preparation & Material Selection',
-      titleKn: 'ಬಟ್ಟೆ ತಯಾರಿಕೆ ಮತ್ತು ವಸ್ತು ಆಯ್ಕೆ',
-      description: 'Learn to choose the right silk fabrics, understand weave patterns, and prepare materials for miniature work.',
-    },
-    {
-      number: '02',
-      title: 'Pleating Calculations & Techniques',
-      titleKn: 'ಮಡಿಕೆ ಲೆಕ್ಕಾಚಾರ ಮತ್ತು ತಂತ್ರಗಳು',
-      description: 'Master precision pleating with mathematical calculations for perfect draping proportions at miniature scale.',
-    },
-    {
-      number: '03',
-      title: 'Scale Modeling & Doll Framework',
-      titleKn: 'ಮಾಪಕ ಮಾಡೆಲಿಂಗ್ ಮತ್ತು ಬೊಂಬೆ ಚೌಕಟ್ಟು',
-      description: 'Build structural foundations for your dolls with proper proportions, armature techniques, and body shaping.',
-    },
-    {
-      number: '04',
-      title: 'Temple Border & Zari Arrangements',
-      titleKn: 'ದೇವಸ್ಥಾನದ ಅಂಚು ಮತ್ತು ಜರಿ ವ್ಯವಸ್ಥೆ',
-      description: 'Apply authentic temple borders and golden zari work to create rich, festival-grade ornamentation.',
-    },
-    {
-      number: '05',
-      title: 'Accessory Framing & Final Assembly',
-      titleKn: 'ಅಲಂಕಾರಿಕ ಚೌಕಟ್ಟು ಮತ್ತು ಅಂತಿಮ ಜೋಡಣೆ',
-      description: 'Complete your masterpiece with jewelry details, decorative accessories, and professional presentation framing.',
-    },
+  const [formData, setFormData] = useState<FormData>({
+    name: '',
+    email: '',
+    mobile: '',
+  });
+  const [status, setStatus] = useState<FormStatus>('idle');
+  const [statusMessage, setStatusMessage] = useState('');
+
+  const handleChange =
+    (field: keyof FormData) =>
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setFormData((prev) => ({ ...prev, [field]: e.target.value }));
+    };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setStatus('loading');
+    setStatusMessage('');
+
+    try {
+      const res = await fetch('/api/webhook', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          event: 'checkout.session.completed',
+          payload: {
+            entity: {
+              email: formData.email,
+              name: formData.name,
+              mobile: formData.mobile,
+            },
+          },
+        }),
+      });
+
+      if (res.ok) {
+        setStatus('success');
+        setStatusMessage(
+          'Enrollment initiated! Check your email for next steps and course access.'
+        );
+      } else {
+        setStatus('error');
+        setStatusMessage('Something went wrong. Please try again or contact support.');
+      }
+    } catch {
+      setStatus('error');
+      setStatusMessage('Connection error. Please check your internet and try again.');
+    }
+  };
+
+  const trustBadges = [
+    { emoji: '🔒', label: 'Secure Checkout' },
+    { emoji: '📱', label: 'Mobile Friendly' },
+    { emoji: '♾️',  label: 'Lifetime Access' },
+    { emoji: '🏆', label: 'Certificate Included' },
   ];
 
   return (
-    <section id="courses" className="relative py-20 sm:py-28">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="enroll" className="relative py-20 sm:py-28">
+      <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+
         {/* Section Header */}
-        <div className="text-center mb-16 animate-fade-in-up">
-          <div className="inline-flex items-center gap-3 mb-6">
-            <span className="h-px w-12 bg-gradient-to-r from-transparent to-amber-500/60" />
-            <span className="text-amber-400/80 text-sm font-semibold uppercase tracking-[0.2em]">
-              Curriculum
-            </span>
-            <span className="h-px w-12 bg-gradient-to-l from-transparent to-amber-500/60" />
-          </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black">
-            <span className="text-gold-shimmer">Complete Learning Path</span>
-          </h2>
-          <p className="mt-3 text-xl sm:text-2xl text-amber-200/60 font-medium" style={{ fontFamily: 'var(--font-family-kannada)' }}>
-            ಸಂಪೂರ್ಣ ಕಲಿಕೆಯ ಮಾರ್ಗ
-          </p>
-        </div>
-
-        {/* Module Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-16">
-          {modules.map((mod) => (
-            <div
-              key={mod.number}
-              className="group relative rounded-2xl border border-amber-500/10 bg-silk-surface p-6 sm:p-8
-                hover:border-amber-500/30 transition-all duration-500
-                hover:shadow-[0_10px_40px_rgba(245,158,11,0.08)]"
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center gap-3 mb-5">
+            <span
+              className="h-px w-10"
+              style={{
+                background: 'linear-gradient(to right, transparent, rgba(212,175,55,0.5))',
+              }}
+            />
+            <span
+              className="text-xs font-semibold uppercase tracking-[0.25em]"
+              style={{ color: '#D4AF37' }}
             >
-              {/* Module Number */}
-              <div className="text-5xl font-black text-amber-500/10 absolute top-4 right-6
-                group-hover:text-amber-500/20 transition-colors duration-500">
-                {mod.number}
-              </div>
-
-              <div className="relative space-y-3">
-                <h3 className="text-lg font-bold text-amber-50 pr-12">
-                  {mod.title}
-                </h3>
-                <p className="text-sm text-amber-400/70 font-semibold" style={{ fontFamily: 'var(--font-family-kannada)' }}>
-                  {mod.titleKn}
-                </p>
-                <p className="text-sm text-amber-100/40 leading-relaxed">
-                  {mod.description}
-                </p>
-              </div>
-
-              {/* Bottom accent */}
-              <div className="mt-6 h-0.5 bg-gradient-to-r from-amber-500/30 to-transparent
-                group-hover:from-amber-500/60 transition-all duration-500" />
-            </div>
-          ))}
+              Secure Enrollment
+            </span>
+            <span
+              className="h-px w-10"
+              style={{
+                background: 'linear-gradient(to left, transparent, rgba(212,175,55,0.5))',
+              }}
+            />
+          </div>
+          <h2
+            className="text-3xl sm:text-4xl font-black"
+            style={{ color: '#F9F6EE' }}
+          >
+            The Complete Heritage
+            <span className="block text-gold-shimmer">Masterclass Access</span>
+          </h2>
         </div>
 
-        {/* Pricing Card */}
-        <div className="max-w-2xl mx-auto animate-fade-in-up-delay-2">
-          <div className="relative rounded-3xl border-2 border-amber-500/30 bg-silk-surface p-8 sm:p-12 text-center
-            hover:border-amber-500/50 transition-all duration-500">
-            {/* Decorative corner accents */}
-            <div className="absolute top-0 left-0 w-16 h-16 border-t-2 border-l-2 border-amber-500/40 rounded-tl-3xl" />
-            <div className="absolute top-0 right-0 w-16 h-16 border-t-2 border-r-2 border-amber-500/40 rounded-tr-3xl" />
-            <div className="absolute bottom-0 left-0 w-16 h-16 border-b-2 border-l-2 border-amber-500/40 rounded-bl-3xl" />
-            <div className="absolute bottom-0 right-0 w-16 h-16 border-b-2 border-r-2 border-amber-500/40 rounded-br-3xl" />
+        {/* Checkout Card */}
+        <div
+          className="relative rounded-3xl overflow-hidden"
+          style={{
+            background: '#1C0713',
+            border: '1px solid rgba(212,175,55,0.2)',
+          }}
+        >
+          {/* Decorative corner accents */}
+          <div
+            className="absolute top-0 left-0 w-16 h-16 rounded-tl-3xl"
+            style={{
+              borderTop: '2px solid rgba(212,175,55,0.4)',
+              borderLeft: '2px solid rgba(212,175,55,0.4)',
+            }}
+          />
+          <div
+            className="absolute top-0 right-0 w-16 h-16 rounded-tr-3xl"
+            style={{
+              borderTop: '2px solid rgba(212,175,55,0.4)',
+              borderRight: '2px solid rgba(212,175,55,0.4)',
+            }}
+          />
+          <div
+            className="absolute bottom-0 left-0 w-16 h-16 rounded-bl-3xl"
+            style={{
+              borderBottom: '2px solid rgba(212,175,55,0.4)',
+              borderLeft: '2px solid rgba(212,175,55,0.4)',
+            }}
+          />
+          <div
+            className="absolute bottom-0 right-0 w-16 h-16 rounded-br-3xl"
+            style={{
+              borderBottom: '2px solid rgba(212,175,55,0.4)',
+              borderRight: '2px solid rgba(212,175,55,0.4)',
+            }}
+          />
 
-            <div className="space-y-6">
-              <div>
-                <p className="text-amber-400/70 text-sm font-semibold uppercase tracking-widest mb-2">
-                  Full Course Access
-                </p>
-                <div className="flex items-baseline justify-center gap-2">
-                  <span className="text-5xl sm:text-6xl font-black text-gold-shimmer">
-                    ₹1,200
-                  </span>
-                  <span className="text-amber-200/40 text-lg">/ one-time</span>
-                </div>
-                <p className="mt-2 text-amber-100/50 text-sm">
-                  Lifetime access to all 5 modules with video lessons
-                </p>
+          <div className="relative p-8 sm:p-12 space-y-8">
+
+            {/* Price Display */}
+            <div className="text-center space-y-3">
+              <div className="flex items-baseline justify-center gap-3">
+                <span
+                  className="text-xl line-through"
+                  style={{ color: 'rgba(200,177,149,0.4)' }}
+                >
+                  ₹7,999
+                </span>
+                <span className="text-5xl sm:text-6xl font-black text-gold-shimmer">
+                  ₹4,999
+                </span>
               </div>
-
-              {/* Features */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-left max-w-md mx-auto">
-                {[
-                  '5 detailed video modules',
-                  'Lifetime access',
-                  'Material sourcing guide',
-                  'Community support',
-                  'Certificate of completion',
-                  'Direct mentor Q&A',
-                ].map((feature) => (
-                  <div key={feature} className="flex items-center gap-2 text-sm text-amber-100/60">
-                    <svg className="w-4 h-4 text-amber-500 shrink-0" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-                    </svg>
-                    {feature}
-                  </div>
-                ))}
-              </div>
-
-              {/* CTA Button */}
-              <a
-                href="/login"
-                className="inline-flex items-center justify-center gap-3 w-full sm:w-auto
-                  px-12 py-5 rounded-2xl
-                  bg-gradient-to-r from-amber-500 to-yellow-600
-                  text-purple-950 font-black text-lg
-                  hover:from-amber-400 hover:to-yellow-500
-                  transition-all duration-300
-                  animate-gold-pulse
-                  hover:scale-105 transform-gpu"
-              >
-                Enroll in Full Course / ಸಂಪೂರ್ಣ ಕೋರ್ಸ್ಗೆ ಸೇರಿ
-                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                </svg>
-              </a>
-              <p className="text-xs text-amber-200/30" style={{ fontFamily: 'var(--font-family-kannada)' }}>
-                Secure payment · Instant access after enrollment · ನೋಂದಣಿ ನಂತರ ತಕ್ಷಣ ಪ್ರವೇಶ
+              <p className="text-sm" style={{ color: '#C8B195' }}>
+                One-time payment &middot; Lifetime access to all modules
               </p>
+              <div
+                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full"
+                style={{
+                  background: 'rgba(212,175,55,0.08)',
+                  border: '1px solid rgba(212,175,55,0.2)',
+                }}
+              >
+                <span
+                  className="text-xs font-bold uppercase tracking-widest"
+                  style={{ color: '#D4AF37' }}
+                >
+                  Save ₹3,000 &mdash; Limited Offer
+                </span>
+              </div>
+            </div>
+
+            {/* Form or Success State */}
+            {status === 'success' ? (
+              <div className="text-center space-y-5 py-8">
+                <div
+                  className="w-16 h-16 mx-auto rounded-full flex items-center justify-center"
+                  style={{
+                    background: 'rgba(212,175,55,0.08)',
+                    border: '1px solid rgba(212,175,55,0.3)',
+                  }}
+                >
+                  <svg
+                    className="w-8 h-8"
+                    style={{ color: '#D4AF37' }}
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={2}
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M4.5 12.75l6 6 9-13.5"
+                    />
+                  </svg>
+                </div>
+                <p className="font-semibold" style={{ color: '#F9F6EE' }}>
+                  {statusMessage}
+                </p>
+                <a
+                  href="/course"
+                  className="inline-block text-sm transition-colors duration-200"
+                  style={{ color: '#D4AF37' }}
+                  onMouseEnter={(e) => {
+                    (e.currentTarget as HTMLElement).style.color = '#E6CA65';
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLElement).style.color = '#D4AF37';
+                  }}
+                >
+                  Go to your Dashboard &rarr;
+                </a>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-5">
+
+                {/* Name field */}
+                <div className="space-y-1.5">
+                  <label
+                    htmlFor="enroll-name"
+                    className="block text-xs font-semibold uppercase tracking-widest"
+                    style={{ color: '#C8B195' }}
+                  >
+                    Full Name
+                  </label>
+                  <input
+                    id="enroll-name"
+                    type="text"
+                    value={formData.name}
+                    onChange={handleChange('name')}
+                    required
+                    placeholder="Your full name"
+                    className="w-full px-4 py-3 rounded-xl text-sm transition-all duration-200
+                      focus:outline-none"
+                    style={{
+                      background: '#2D0B1E',
+                      border: '1px solid rgba(212,175,55,0.15)',
+                      color: '#F9F6EE',
+                    }}
+                    onFocus={(e) => {
+                      e.currentTarget.style.boxShadow = '0 0 0 2px #D4AF37';
+                      e.currentTarget.style.borderColor = 'transparent';
+                    }}
+                    onBlur={(e) => {
+                      e.currentTarget.style.boxShadow = 'none';
+                      e.currentTarget.style.borderColor = 'rgba(212,175,55,0.15)';
+                    }}
+                  />
+                </div>
+
+                {/* Email field */}
+                <div className="space-y-1.5">
+                  <label
+                    htmlFor="enroll-email"
+                    className="block text-xs font-semibold uppercase tracking-widest"
+                    style={{ color: '#C8B195' }}
+                  >
+                    Email Address
+                  </label>
+                  <input
+                    id="enroll-email"
+                    type="email"
+                    value={formData.email}
+                    onChange={handleChange('email')}
+                    required
+                    placeholder="your@email.com"
+                    className="w-full px-4 py-3 rounded-xl text-sm transition-all duration-200
+                      focus:outline-none"
+                    style={{
+                      background: '#2D0B1E',
+                      border: '1px solid rgba(212,175,55,0.15)',
+                      color: '#F9F6EE',
+                    }}
+                    onFocus={(e) => {
+                      e.currentTarget.style.boxShadow = '0 0 0 2px #D4AF37';
+                      e.currentTarget.style.borderColor = 'transparent';
+                    }}
+                    onBlur={(e) => {
+                      e.currentTarget.style.boxShadow = 'none';
+                      e.currentTarget.style.borderColor = 'rgba(212,175,55,0.15)';
+                    }}
+                  />
+                </div>
+
+                {/* Mobile field */}
+                <div className="space-y-1.5">
+                  <label
+                    htmlFor="enroll-mobile"
+                    className="block text-xs font-semibold uppercase tracking-widest"
+                    style={{ color: '#C8B195' }}
+                  >
+                    Mobile Number
+                  </label>
+                  <input
+                    id="enroll-mobile"
+                    type="tel"
+                    value={formData.mobile}
+                    onChange={handleChange('mobile')}
+                    required
+                    placeholder="+91 XXXXX XXXXX"
+                    className="w-full px-4 py-3 rounded-xl text-sm transition-all duration-200
+                      focus:outline-none"
+                    style={{
+                      background: '#2D0B1E',
+                      border: '1px solid rgba(212,175,55,0.15)',
+                      color: '#F9F6EE',
+                    }}
+                    onFocus={(e) => {
+                      e.currentTarget.style.boxShadow = '0 0 0 2px #D4AF37';
+                      e.currentTarget.style.borderColor = 'transparent';
+                    }}
+                    onBlur={(e) => {
+                      e.currentTarget.style.boxShadow = 'none';
+                      e.currentTarget.style.borderColor = 'rgba(212,175,55,0.15)';
+                    }}
+                  />
+                </div>
+
+                {/* Error message */}
+                {status === 'error' && (
+                  <div
+                    className="p-3 rounded-xl text-sm"
+                    style={{
+                      background: 'rgba(239,68,68,0.08)',
+                      border: '1px solid rgba(239,68,68,0.2)',
+                      color: '#fca5a5',
+                    }}
+                  >
+                    {statusMessage}
+                  </div>
+                )}
+
+                {/* CTA Submit Button */}
+                <button
+                  type="submit"
+                  disabled={status === 'loading'}
+                  className="w-full py-4 rounded-xl font-bold tracking-wide uppercase text-base
+                    transition-all duration-300 transform-gpu
+                    disabled:opacity-50 disabled:cursor-not-allowed
+                    hover:scale-[1.02]"
+                  style={{
+                    background: '#D4AF37',
+                    color: '#2D0B1E',
+                    boxShadow: '0 4px 20px rgba(212,175,55,0.4)',
+                  }}
+                  onMouseEnter={(e) => {
+                    if (status !== 'loading')
+                      (e.currentTarget as HTMLElement).style.background = '#E6CA65';
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLElement).style.background = '#D4AF37';
+                  }}
+                >
+                  {status === 'loading' ? (
+                    <span className="inline-flex items-center justify-center gap-2">
+                      <svg
+                        className="animate-spin w-5 h-5"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <circle
+                          className="opacity-25"
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="4"
+                        />
+                        <path
+                          className="opacity-75"
+                          fill="currentColor"
+                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+                        />
+                      </svg>
+                      Processing…
+                    </span>
+                  ) : (
+                    'Enroll in Full Course / ಸಂಪೂರ್ಣ ಕೋರ್ಸ್ಗೆ ಸೇರಿ'
+                  )}
+                </button>
+              </form>
+            )}
+
+            {/* Trust badges */}
+            <div
+              className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 pt-2"
+              style={{ borderTop: '1px solid rgba(212,175,55,0.08)' }}
+            >
+              {[
+                { emoji: '🔒', label: 'Secure Checkout' },
+                { emoji: '📱', label: 'Mobile Friendly' },
+                { emoji: '♾',    label: 'Lifetime Access' },
+                { emoji: '🏆', label: 'Certificate Included' },
+              ].map((badge) => (
+                <div
+                  key={badge.label}
+                  className="inline-flex items-center gap-1.5 text-xs"
+                  style={{ color: '#C8B195' }}
+                >
+                  <span>{badge.emoji}</span>
+                  <span>{badge.label}</span>
+                </div>
+              ))}
             </div>
           </div>
         </div>
