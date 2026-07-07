@@ -18,52 +18,8 @@ interface VideoItem {
   thumbnail: string;
 }
 
+// Only keeping the actual uploaded course here
 const videos: VideoItem[] = [
-  {
-    id: 'v1',
-    bunnyGuid: 'bunny-guid-v1-placeholder',
-    title: 'Fabric Preparation & Material Selection',
-    titleKn: 'ಬಟ್ಟೆ ತಯಾರಿಕೆ ಮತ್ತು ವಸ್ತು ಆಯ್ಕೆ',
-    price: 999,
-    originalPrice: 1999,
-    thumbnail: '/WhatsApp Image 2026-07-06 at 2.57.13 PM.jpeg',
-  },
-  {
-    id: 'v2',
-    bunnyGuid: 'bunny-guid-v2-placeholder',
-    title: 'Pleating Calculations & Techniques',
-    titleKn: 'ಮಡಿಕೆ ಲೆಕ್ಕಾಚಾರ ಮತ್ತು ತಂತ್ರಗಳು',
-    price: 999,
-    originalPrice: 1999,
-    thumbnail: '/WhatsApp Image 2026-07-06 at 3.21.49 PM.jpeg',
-  },
-  {
-    id: 'v3',
-    bunnyGuid: 'bunny-guid-v3-placeholder',
-    title: 'Scale Modeling & Doll Framework',
-    titleKn: 'ಮಾಪಕ ಮಾಡೆಲಿಂಗ್ ಮತ್ತು ಬೊಂಬೆ ಚೌಕಟ್ಟು',
-    price: 999,
-    originalPrice: 1999,
-    thumbnail: '/WhatsApp Image 2026-07-06 at 2.57.12 PM.jpeg',
-  },
-  {
-    id: 'v4',
-    bunnyGuid: 'bunny-guid-v4-placeholder',
-    title: 'Temple Border & Zari Arrangements',
-    titleKn: 'ದೇವಸ್ಥಾನದ ಅಂಚು ಮತ್ತು ಜರಿ ವ್ಯವಸ್ಥೆ',
-    price: 999,
-    originalPrice: 1999,
-    thumbnail: '/WhatsApp Image 2026-07-06 at 2.57.13 PM.jpeg',
-  },
-  {
-    id: 'v5',
-    bunnyGuid: 'bunny-guid-v5-placeholder',
-    title: 'Accessory Framing & Final Assembly',
-    titleKn: 'ಅಲಂಕಾರಿಕ ಚೌಕಟ್ಟು ಮತ್ತು ಅಂತಿಮ ಜೋಡಣೆ',
-    price: 999,
-    originalPrice: 1999,
-    thumbnail: '/WhatsApp Image 2026-07-06 at 3.21.49 PM.jpeg',
-  },
   {
     id: 'v6',
     bunnyGuid: 'cb2f8623-83eb-468a-bf97-ca52e90f2095',
