@@ -2,7 +2,7 @@
 @import "tailwindcss";
 
 /* ============================================================
-   KANNADATI HERITAGE ACADEMY — IMPERIAL INDIAN DESIGN SYSTEM
+   HOBBIES OF SHUBHA — IMPERIAL INDIAN DESIGN SYSTEM
    ============================================================ */
 
 @theme {
@@ -50,7 +50,7 @@
 
 /* ==================== UTILITIES ==================== */
 @layer utilities {
-  /* Kannadati metallic gold gradient glyph */
+  /* Metallic gold gradient glyph */
   .kannadati-glyph {
     background: linear-gradient(to right, #D4AF37, #F3E5AB, #AA7C11);
     -webkit-background-clip: text;
@@ -123,6 +123,37 @@
   .animate-live-pulse {
     animation: livePulse 1.5s ease-in-out infinite;
   }
+
+  /* Overlay backdrop */
+  .overlay-backdrop {
+    background: rgba(28, 7, 19, 0.94);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  /* Celebration shimmer sweep */
+  .celebration-shimmer {
+    background: linear-gradient(
+      105deg,
+      transparent 40%,
+      rgba(212, 175, 55, 0.12) 45%,
+      rgba(212, 175, 55, 0.25) 50%,
+      rgba(212, 175, 55, 0.12) 55%,
+      transparent 60%
+    );
+    background-size: 200% 100%;
+    animation: shimmerSweep 2s ease-in-out infinite;
+  }
+
+  /* Password match indicators */
+  .match-valid {
+    border-color: rgba(74, 222, 128, 0.5) !important;
+    box-shadow: 0 0 0 1px rgba(74, 222, 128, 0.2);
+  }
+  .match-invalid {
+    border-color: rgba(248, 113, 113, 0.5) !important;
+    box-shadow: 0 0 0 1px rgba(248, 113, 113, 0.2);
+  }
 }
 
 /* ==================== KEYFRAMES ==================== */
@@ -163,4 +194,25 @@
 @keyframes livePulse {
   0%, 100% { opacity: 1;   transform: scale(1); }
   50%       { opacity: 0.4; transform: scale(0.82); }
+}
+
+/* Celebration shimmer sweep */
+@keyframes shimmerSweep {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Scale bounce in */
+@keyframes scaleIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.04);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
