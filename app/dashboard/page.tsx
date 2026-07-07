@@ -64,6 +64,15 @@ const videos: VideoItem[] = [
     originalPrice: 1999,
     thumbnail: '/WhatsApp Image 2026-07-06 at 3.21.49 PM.jpeg',
   },
+  {
+    id: 'v6',
+    bunnyGuid: 'cb2f8623-83eb-468a-bf97-ca52e90f2095',
+    title: 'Varamahalakshmi Saree Draping Masterclass',
+    titleKn: 'ವರಮಹಾಲಕ್ಷ್ಮಿ ಸೀರೆ ಉಡಿಸುವ ಮಾಸ್ಟರ್‌ಕ್ಲಾಸ್',
+    price: 249,
+    originalPrice: 499,
+    thumbnail: '/WhatsApp Image 2026-07-06 at 2.57.12 PM.jpeg',
+  }
 ];
 
 export default function DashboardPage() {
