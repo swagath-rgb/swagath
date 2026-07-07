@@ -21,15 +21,15 @@ export default function Footer() {
             <div>
               <span
                 className="kannadati-glyph block text-3xl font-black leading-none"
-                style={{ fontFamily: 'var(--font-family-kannada)' }}
+                style={{ fontFamily: 'var(--font-family-sans)' }}
               >
-                ಕನ್ನಡತಿ
+                Hobbies of Shubha
               </span>
               <span
                 className="block text-[9px] font-semibold uppercase tracking-[0.25em] mt-1"
                 style={{ color: '#C8B195' }}
               >
-                KANNADATI • HERITAGE ACADEMY
+                HERITAGE ACADEMY
               </span>
             </div>
             <p
@@ -155,7 +155,7 @@ export default function Footer() {
           style={{ borderTop: '1px solid rgba(212,175,55,0.08)' }}
         >
           <p className="text-xs" style={{ color: 'rgba(200,177,149,0.3)' }}>
-            &copy; 2026 Kannadati Heritage Academy. All rights reserved.
+            &copy; 2026 Hobbies of Shubha. All rights reserved.
           </p>
           <p
             className="text-xs"

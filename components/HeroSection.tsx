@@ -1,5 +1,8 @@
 'use client';
 
+import RevealSection from '@/components/ui/RevealSection';
+import GoldTraceBorder from '@/components/ui/GoldTraceBorder';
+
 export default function HeroSection() {
   const socialProof = [
     { value: '5,000+', label: 'Lifelong Learners', emoji: '🎓' },
@@ -17,14 +20,14 @@ export default function HeroSection() {
         aria-hidden="true"
       >
         <span
-          className="kannadati-glyph font-black leading-none"
+          className="kannadati-glyph font-black leading-none text-center"
           style={{
-            fontFamily: 'var(--font-family-kannada)',
-            fontSize: 'clamp(8rem, 25vw, 22rem)',
-            opacity: 0.04,
+            fontFamily: 'var(--font-family-sans)',
+            fontSize: 'clamp(3rem, 10vw, 8rem)',
+            opacity: 0.03,
           }}
         >
-          ಕನ್ನಡತಿ
+          Hobbies of Shubha
         </span>
       </div>
 
@@ -64,7 +67,7 @@ export default function HeroSection() {
               <span className="text-gold-shimmer">Heritage Landscape.</span>
             </h1>
 
-            {/* Kannadati brand accent */}
+            {/* Hobbies of Shubha brand accent */}
             <div className="space-y-1 border-l-2 pl-5"
               style={{ borderColor: 'rgba(212,175,55,0.3)' }}>
               <p
@@ -74,17 +77,17 @@ export default function HeroSection() {
                 Presented by
               </p>
               <span
-                className="kannadati-glyph block text-5xl sm:text-6xl font-black leading-tight
+                className="kannadati-glyph block text-4xl sm:text-5xl font-black leading-tight
                   cursor-default"
-                style={{ fontFamily: 'var(--font-family-kannada)' }}
+                style={{ fontFamily: 'var(--font-family-sans)' }}
               >
-                ಕನ್ನಡತಿ
+                Hobbies of Shubha
               </span>
               <span
                 className="block text-[10px] font-semibold uppercase tracking-[0.28em] mt-1"
                 style={{ color: '#C8B195' }}
               >
-                KANNADATI • HERITAGE ACADEMY
+                HERITAGE ACADEMY
               </span>
             </div>
 
@@ -157,94 +160,106 @@ export default function HeroSection() {
             </div>
           </div>
 
-          {/* ===== Right Column — Arched Framed Portrait ===== */}
+          {/* ===== Right Column — Arched Portrait with Reveal, Gold Trace & Chittara Overlay ===== */}
           <div className="flex justify-center lg:justify-end">
-            <div className="relative mt-8 lg:mt-0">
-              {/* Outer ambient glow */}
-              <div
-                className="absolute rounded-t-full blur-2xl pointer-events-none"
-                style={{
-                  inset: '-1.5rem',
-                  background: 'linear-gradient(to bottom, rgba(212,175,55,0.12), rgba(212,175,55,0.04), transparent)',
-                }}
-              />
-
-              {/* SVG corner bracket — Top Left */}
-              <svg
-                className="absolute"
-                style={{ top: '-14px', left: '-14px', width: '36px', height: '36px', color: 'rgba(212,175,55,0.55)' }}
-                viewBox="0 0 36 36" fill="none" stroke="currentColor" strokeWidth="2"
-              >
-                <path d="M32 4H4v32" />
-              </svg>
-              {/* SVG corner bracket — Top Right */}
-              <svg
-                className="absolute"
-                style={{ top: '-14px', right: '-14px', width: '36px', height: '36px', color: 'rgba(212,175,55,0.55)' }}
-                viewBox="0 0 36 36" fill="none" stroke="currentColor" strokeWidth="2"
-              >
-                <path d="M4 4h32v32" />
-              </svg>
-              {/* SVG corner bracket — Bottom Left */}
-              <svg
-                className="absolute"
-                style={{ bottom: '-14px', left: '-14px', width: '36px', height: '36px', color: 'rgba(212,175,55,0.55)' }}
-                viewBox="0 0 36 36" fill="none" stroke="currentColor" strokeWidth="2"
-              >
-                <path d="M32 32H4V4" />
-              </svg>
-              {/* SVG corner bracket — Bottom Right */}
-              <svg
-                className="absolute"
-                style={{ bottom: '-14px', right: '-14px', width: '36px', height: '36px', color: 'rgba(212,175,55,0.55)' }}
-                viewBox="0 0 36 36" fill="none" stroke="currentColor" strokeWidth="2"
-              >
-                <path d="M4 32h32V4" />
-              </svg>
-
-              {/* Outer frame — 4px sandalwood gold padding */}
-              <div
-                className="rounded-t-full"
-                style={{ padding: '4px', border: '1px solid rgba(230,202,101,0.35)' }}
-              >
-                {/* Inner frame — 1px solid polished temple gold */}
-                <div
-                  className="rounded-t-full"
-                  style={{ padding: '2px', border: '1px solid rgba(212,175,55,0.75)' }}
+            <RevealSection delay={150}>
+              <div className="relative mt-8 lg:mt-0">
+                {/* SVG corner bracket — Top Left */}
+                <svg
+                  className="absolute"
+                  style={{ top: '-14px', left: '-14px', width: '36px', height: '36px', color: 'rgba(212,175,55,0.55)' }}
+                  viewBox="0 0 36 36" fill="none" stroke="currentColor" strokeWidth="2"
                 >
-                  {/* Arched portrait */}
-                  <div
-                    className="rounded-t-full overflow-hidden"
-                    style={{
-                      width: '320px',
-                      height: '400px',
-                      boxShadow: '15px 25px 50px -15px rgba(0,0,0,0.75)',
-                    }}
-                  >
+                  <path d="M32 4H4v32" />
+                </svg>
+                {/* SVG corner bracket — Top Right */}
+                <svg
+                  className="absolute"
+                  style={{ top: '-14px', right: '-14px', width: '36px', height: '36px', color: 'rgba(212,175,55,0.55)' }}
+                  viewBox="0 0 36 36" fill="none" stroke="currentColor" strokeWidth="2"
+                >
+                  <path d="M4 4h32v32" />
+                </svg>
+                {/* SVG corner bracket — Bottom Left */}
+                <svg
+                  className="absolute"
+                  style={{ bottom: '-14px', left: '-14px', width: '36px', height: '36px', color: 'rgba(212,175,55,0.55)' }}
+                  viewBox="0 0 36 36" fill="none" stroke="currentColor" strokeWidth="2"
+                >
+                  <path d="M32 32H4V4" />
+                </svg>
+                {/* SVG corner bracket — Bottom Right */}
+                <svg
+                  className="absolute"
+                  style={{ bottom: '-14px', right: '-14px', width: '36px', height: '36px', color: 'rgba(212,175,55,0.55)' }}
+                  viewBox="0 0 36 36" fill="none" stroke="currentColor" strokeWidth="2"
+                >
+                  <path d="M4 32h32V4" />
+                </svg>
+
+                {/* Shimmering GoldTraceBorder wrapping the photo */}
+                <GoldTraceBorder className="w-[320px] shadow-[15px_25px_50px_-15px_rgba(0,0,0,0.75)]">
+                  <div className="relative aspect-[3/4] overflow-hidden rounded-[calc(1rem-1px)]">
+                    {/* The User Photo */}
                     <img
-                      src="/WhatsApp Image 2026-07-06 at 3.21.49 PM.jpeg"
-                      alt="Shubha — Master Artisan, Kannadati Heritage Academy"
-                      className="w-full h-full object-cover object-top"
+                      src="/my_photo.jpg"
+                      alt="Hobbies of Shubha Master Teacher"
+                      className="w-full h-full object-cover object-top transition-transform duration-700 hover:scale-105"
                       loading="eager"
                     />
+
+                    {/* Faint geometric Chittara pattern overlay */}
+                    <svg
+                      className="absolute inset-0 w-full h-full pointer-events-none mix-blend-overlay"
+                      xmlns="http://www.w3.org/2000/svg"
+                      style={{ opacity: 0.15, color: '#D4AF37' }}
+                    >
+                      <defs>
+                        <pattern
+                          id="hero-chittara-tile"
+                          x="0"
+                          y="0"
+                          width="40"
+                          height="40"
+                          patternUnits="userSpaceOnUse"
+                        >
+                          <path
+                            d="M20 1 L39 20 L20 39 L1 20 Z"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="0.5"
+                          />
+                          <circle cx="20" cy="20" r="1.5" fill="currentColor" />
+                        </pattern>
+                      </defs>
+                      <rect width="100%" height="100%" fill="url(#hero-chittara-tile)" />
+                    </svg>
+
+                    {/* Dark gradient overlay at bottom for blending */}
+                    <div
+                      className="absolute inset-0 pointer-events-none"
+                      style={{
+                        background: 'linear-gradient(to top, rgba(28, 7, 19, 0.7) 0%, transparent 35%)',
+                      }}
+                    />
                   </div>
+                </GoldTraceBorder>
+
+                {/* Floating experience badge */}
+                <div
+                  className="absolute left-1/2 -translate-x-1/2 whitespace-nowrap
+                    px-5 py-2.5 rounded-xl font-bold text-sm shadow-xl"
+                  style={{
+                    bottom: '-18px',
+                    background: '#D4AF37',
+                    color: '#2D0B1E',
+                    boxShadow: '0 8px 24px rgba(212,175,55,0.35)',
+                  }}
+                >
+                  10+ ವರ್ಷಗಳ ಅನುಭವ
                 </div>
               </div>
-
-              {/* Floating experience badge */}
-              <div
-                className="absolute left-1/2 -translate-x-1/2 whitespace-nowrap
-                  px-5 py-2.5 rounded-xl font-bold text-sm shadow-xl"
-                style={{
-                  bottom: '-18px',
-                  background: '#D4AF37',
-                  color: '#2D0B1E',
-                  boxShadow: '0 8px 24px rgba(212,175,55,0.35)',
-                }}
-              >
-                10+ ವರ್ಷಗಳ ಅನುಭವ
-              </div>
-            </div>
+            </RevealSection>
           </div>
         </div>
 

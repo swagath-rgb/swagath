@@ -4,7 +4,7 @@ import './globals.css';
 export const metadata: Metadata = {
   title: 'Hobbies of Shubha | ಹೊಬ್ಬೀಸ್ ಆಫ್ ಶುಭ — Traditional Saree Art Courses',
   description:
-    'Learn the exquisite art of traditional miniature saree draping and majestic doll creation. Premium online courses by Shubha — master fabric preparation, pleating, scale modeling, and festival accessories. ಕಲಾತ್ಮಕ ಸೀರೆ ವಿನ್ಯಾಸ ಕಲಿಯಿರಿ.',
+    'Learn the exquisite art of traditional miniature saree draping and majestic doll creation. Premium online courses — master fabric preparation, pleating, scale modeling, and festival accessories. ಕಲಾತ್ಮಕ ಸೀರೆ ವಿನ್ಯಾಸ ಕಲಿಯಿರಿ.',
   keywords: [
     'saree draping course',
     'traditional arts Karnataka',

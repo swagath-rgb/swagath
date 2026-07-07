@@ -37,13 +37,13 @@ export default function Navbar() {
           <a href="/" className="flex flex-col gap-0.5 group">
             <span
               className="kannadati-glyph text-2xl sm:text-3xl font-black leading-none"
-              style={{ fontFamily: 'var(--font-family-kannada)' }}
+              style={{ fontFamily: 'var(--font-family-sans)' }}
             >
-              ಕನ್ನಡತಿ
+              Hobbies of Shubha
             </span>
             <span className="text-[9px] sm:text-[10px] tracking-widest font-semibold uppercase"
               style={{ color: '#C8B195' }}>
-              KANNADATI • HERITAGE ACADEMY
+              HERITAGE ACADEMY
             </span>
           </a>
 
