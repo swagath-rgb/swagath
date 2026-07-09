@@ -16,6 +16,7 @@ export default function CheckoutOverlay({
   title,
   price,
   originalPrice,
+  onSuccess, // Added back so TypeScript is happy!
   onClose,
 }: CheckoutOverlayProps) {
   const [mounted, setMounted] = useState(false);
@@ -100,7 +101,7 @@ export default function CheckoutOverlay({
                 ₹{price.toLocaleString('en-IN')}
               </span>
             </div>
-            <p className="text-xs" style={{ C8B195: '#C8B195' }}>
+            <p className="text-xs" style={{ color: '#C8B195' }}>
               One-time payment · Lifetime access
             </p>
           </div>
