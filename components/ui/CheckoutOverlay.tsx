@@ -100,14 +100,14 @@ export default function CheckoutOverlay({
                 ₹{price.toLocaleString('en-IN')}
               </span>
             </div>
-            <p className="text-xs" style={{ color: '#C8B195' }}>
+            <p className="text-xs" style={{ C8B195: '#C8B195' }}>
               One-time payment · Lifetime access
             </p>
           </div>
 
-          {/* Direct Pay Button (Replaced Simulator with your Live Link) */}
+          {/* Direct Pay Button Linked to Your Exact Smart Page */}
           <a
-            href="https://www.instamojo.com/@hobbies_of_shubha"
+            href="https://hobbies-of-shubha.mojo.page/varamahalakshmi-saree-draping-masterclas"
             target="_blank"
             rel="noopener noreferrer"
             className="block w-full py-4 rounded-xl font-bold uppercase tracking-wide text-sm text-center
